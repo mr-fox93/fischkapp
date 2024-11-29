@@ -1,12 +1,12 @@
-import { AppHeader } from "./components/AppHeader";
 import { AppLayout } from "./components/AppLayout";
 
-import "./App.css";
+import "./App.module.scss";
+import AppHeader from "./components/AppHeader";
 
 function App() {
   return (
     <AppLayout>
-      <AppHeader />
+      <AppHeader cardsAmount={0} />
     </AppLayout>
   );
 }
