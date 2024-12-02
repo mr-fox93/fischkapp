@@ -1,19 +1,14 @@
 {
   "fiszki": [
     {
-      "id": "874d9b64-b143-4ff0-a789-bffe64d531b0",
-      "question": "chuj",
-      "answer": "cipa"
+      "id": "4be40ff5-3ecc-40fe-a2b5-73c6ee6d7125",
+      "question": "cześć",
+      "answer": "co tam"
     },
     {
-      "id": "f4b08433-421a-4e87-a0cc-d25929c7a1fb",
-      "question": "aasas",
-      "answer": ""
-    },
-    {
-      "id": "5591abe7-30e9-48e6-bb41-a509fb4828bf",
-      "question": "as",
-      "answer": "bas"
+      "id": "7e820e6f-91bb-4ac9-862d-e0a444f74740",
+      "question": "kurwa",
+      "answer": "moje pole"
     }
   ]
 }

@@ -8,6 +8,7 @@ import Flashcard from "./components/Flashcard";
 
 function App() {
   const [flashcards, setFlashCards] = useState<FlashCard[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     getAllFlashCards().then((data) => {
@@ -17,7 +18,8 @@ function App() {
 
   return (
     <AppLayout>
-      <AppHeader cardsAmount={0} />
+      <AppHeader cardsAmount={0} onVisible={() => setIsVisible(!isVisible)} />
+      {isVisible && <Flashcard id="" question="" answer="" key="new" />}{" "}
       {flashcards &&
         flashcards.map((card) => (
           <Flashcard
