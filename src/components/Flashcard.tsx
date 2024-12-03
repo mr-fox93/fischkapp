@@ -3,11 +3,19 @@ import styles from "../components/Flashcard.module.scss";
 import { deleteCard } from "../services/flashcardService";
 import { FlashCard } from "../types";
 import { addNewCard } from "../services/flashcardService";
+import { editCard } from "../services/flashcardService";
 
-const Flashcard: React.FC<FlashCard> = ({ id, question, answer }) => {
+const Flashcard: React.FC<FlashCard> = ({
+  id,
+  question,
+  answer,
+  onVisible,
+}) => {
   const [isFlipped, setIsFlipped] = React.useState(false);
   const [newCard, setNewCard] = React.useState({ question: "", answer: "" });
   const [steps, setSteps] = React.useState<number>(id === "" ? 0 : 2);
+  const [edit, setEdit] = React.useState(false);
+
   const handleCardClick = () => {
     if (steps === 2) setIsFlipped(!isFlipped);
     setIsFlipped(!isFlipped);
@@ -22,8 +30,22 @@ const Flashcard: React.FC<FlashCard> = ({ id, question, answer }) => {
   };
 
   const handleSave = async () => {
-    await addNewCard(newCard.question, newCard.answer);
-    handleSteps();
+    if (edit) {
+      await editCard(id, newCard.question, newCard.answer);
+      setEdit(false);
+      onVisible();
+      handleSteps();
+    } else {
+      await addNewCard(newCard.question, newCard.answer);
+      onVisible();
+      handleSteps();
+    }
+  };
+
+  const handledEdit = () => {
+    setEdit(true);
+    setSteps(0);
+    setNewCard({ question, answer });
   };
 
   return (
@@ -71,6 +93,7 @@ const Flashcard: React.FC<FlashCard> = ({ id, question, answer }) => {
           >
             Delete
           </button>
+          <button onClick={handledEdit}>Edit</button>
         </>
       )}
     </div>
