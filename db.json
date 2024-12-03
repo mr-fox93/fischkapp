@@ -1,11 +1,6 @@
 {
   "fiszki": [
     {
-      "id": "d2ec4d07-d34f-4427-9a57-bc3b8da9f0dd",
-      "question": "nie mam",
-      "answer": "Cie dosyć"
-    },
-    {
       "id": "0f144f0e-d6f9-4a48-a45e-80f84579e054",
       "question": "hej hej ",
       "answer": "zamaluj czas"
@@ -14,6 +9,11 @@
       "id": "e3c55c99-46b1-4264-96c2-6dba8187bfea",
       "question": "eee",
       "answer": "makarena "
+    },
+    {
+      "id": "93258794-39e0-456a-8fb4-e205955445ae",
+      "question": "jaja",
+      "answer": "jak berety"
     }
   ]
 }
