@@ -18,7 +18,10 @@ function App() {
 
   return (
     <AppLayout>
-      <AppHeader cardsAmount={0} onVisible={() => setIsVisible(true)} />
+      <AppHeader
+        cardsAmount={flashcards.length}
+        onVisible={() => setIsVisible(true)}
+      />
       {isVisible && (
         <Flashcard
           id=""
