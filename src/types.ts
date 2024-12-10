@@ -3,4 +3,5 @@ export interface FlashCard {
   question: string;
   answer: string;
   onVisible: () => void;
+  idx: number;
 }

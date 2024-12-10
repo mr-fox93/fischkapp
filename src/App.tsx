@@ -14,7 +14,7 @@ function App() {
     getAllFlashCards().then((data) => {
       setFlashCards(data);
     });
-  }, [flashcards]);
+  }, []);
 
   return (
     <AppLayout>
@@ -29,16 +29,18 @@ function App() {
           answer=""
           key="new"
           onVisible={() => setIsVisible(false)}
+          idx={0}
         />
       )}{" "}
       {flashcards &&
-        flashcards.map((card) => (
+        flashcards.map((card, index) => (
           <Flashcard
             key={card.id}
             id={card.id}
             question={card.question}
             answer={card.answer}
             onVisible={() => setIsVisible(false)}
+            idx={index}
           />
         ))}
     </AppLayout>
