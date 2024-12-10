@@ -10,6 +10,7 @@ const Flashcard: React.FC<FlashCard> = ({
   question,
   answer,
   onVisible,
+  idx,
 }) => {
   const [isFlipped, setIsFlipped] = React.useState(false);
   const [newCard, setNewCard] = React.useState({ question: "", answer: "" });
@@ -85,14 +86,16 @@ const Flashcard: React.FC<FlashCard> = ({
       {steps === 2 && (
         <>
           <div>{isFlipped ? <p>{answer}</p> : <p>{question}</p>}</div>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              deleteCard(id);
-            }}
-          >
-            Delete
-          </button>
+          {idx !== 0 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteCard(id);
+              }}
+            >
+              Delete
+            </button>
+          )}
           <button onClick={handledEdit}>Edit</button>
         </>
       )}

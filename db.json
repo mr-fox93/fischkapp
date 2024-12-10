@@ -1,19 +1,19 @@
 {
   "fiszki": [
     {
-      "id": "0f144f0e-d6f9-4a48-a45e-80f84579e054",
-      "question": "hej hej ",
-      "answer": "zamaluj czas"
+      "id": "9810d176-ce1b-45f5-a518-603b2dc7c0f1",
+      "question": "To jest przykład",
+      "answer": "to jest odp"
     },
     {
-      "id": "e3c55c99-46b1-4264-96c2-6dba8187bfea",
-      "question": "eee",
-      "answer": "makarena "
+      "id": "f734f403-8758-4e30-8776-dc057cd950b8",
+      "question": "Pytanie ?",
+      "answer": "Odpowiedź"
     },
     {
-      "id": "93258794-39e0-456a-8fb4-e205955445ae",
-      "question": "jaja",
-      "answer": "jak berety"
+      "id": "4479cb56-6bac-413a-96f0-52f701cb851a",
+      "question": "idz ty",
+      "answer": "na chuj"
     }
   ]
 }
