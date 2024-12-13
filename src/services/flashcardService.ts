@@ -1,7 +1,15 @@
 import { FlashCard } from "../types";
 
 export const getAllFlashCards = async (): Promise<FlashCard[]> => {
-  const response = await fetch("http://localhost:3000/fiszki");
+  const response = await fetch(
+    "https://training.nerdbord.io/api/v1/fischkapp/flashcards",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   if (!response.ok) {
     throw new Error("Server error");
   }
