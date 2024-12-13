@@ -29,17 +29,23 @@ export const addNewCard = async (
   q: string,
   a: string
 ): Promise<FlashCard[]> => {
-  const response = await fetch("http://localhost:3000/fiszki", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: crypto.randomUUID(),
-      question: q,
-      answer: a,
-    }),
-  });
+  const response = await fetch(
+    "https://training.nerdbord.io/api/v1/fischkapp/flashcards",
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "secret_token",
+      },
+
+      body: JSON.stringify({
+        id: crypto.randomUUID(),
+        front: q,
+        back: a,
+      }),
+    }
+  );
   if (!response.ok) {
     throw new Error("Server error");
   }
