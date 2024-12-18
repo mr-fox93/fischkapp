@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getAllFlashCards } from "./services/flashcardService";
 import { FlashCard } from "./types";
 import Flashcard from "./components/Flashcard";
+import AddNewCard from "./components/AddNewCard";
 
 function App() {
   const [flashcards, setFlashCards] = useState<FlashCard[]>([]);
@@ -20,9 +21,9 @@ function App() {
     <AppLayout>
       <AppHeader
         cardsAmount={flashcards.length}
-        onVisible={() => setIsVisible(true)}
+        onVisible={() => setIsVisible(!isVisible)}
       />
-      {isVisible && <Flashcard _id="" front="" back="" key="new" />}{" "}
+      {isVisible && <AddNewCard />}
       {flashcards &&
         flashcards.map((card) => (
           <Flashcard
