@@ -22,25 +22,14 @@ function App() {
         cardsAmount={flashcards.length}
         onVisible={() => setIsVisible(true)}
       />
-      {isVisible && (
-        <Flashcard
-          id=""
-          question=""
-          answer=""
-          key="new"
-          onVisible={() => setIsVisible(false)}
-          idx={0}
-        />
-      )}{" "}
+      {isVisible && <Flashcard _id="" front="" back="" key="new" />}{" "}
       {flashcards &&
-        flashcards.map((card, index) => (
+        flashcards.map((card) => (
           <Flashcard
-            key={card.id}
-            id={card.id}
-            question={card.question}
-            answer={card.answer}
-            onVisible={() => setIsVisible(false)}
-            idx={index}
+            key={card._id}
+            _id={card._id}
+            front={card.front}
+            back={card.back}
           />
         ))}
     </AppLayout>
