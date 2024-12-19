@@ -23,7 +23,7 @@ const Flashcard: React.FC<FlashCard> = ({ _id, front, back }) => {
   };
 
   const handleEdit = (_id: string | undefined) => {
-    editCard(_id, input1 || undefined, input2 || undefined);
+    editCard({ front: input1, back: input2 }, _id);
     editFlashcard({ _id, front: input1, back: input2 });
     setIsEdit(false);
   };

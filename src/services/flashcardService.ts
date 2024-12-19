@@ -1,4 +1,4 @@
-import { FlashCard } from "../types";
+import { EditPayload, FlashCard } from "../types";
 
 export const getAllFlashCards = async (): Promise<FlashCard[]> => {
   const response = await fetch(
@@ -53,9 +53,8 @@ export const addNewCard = async (data: FlashCard): Promise<FlashCard[]> => {
 };
 
 export const editCard = async (
-  _id: string | undefined,
-  sideOne?: string,
-  sideTwo?: string
+  data: EditPayload,
+  _id: string | undefined
 ): Promise<FlashCard[]> => {
   const response = await fetch(
     `https://training.nerdbord.io/api/v1/fischkapp/flashcards/${_id}`,
@@ -65,10 +64,7 @@ export const editCard = async (
         "Content-Type": "application/json",
         Authorization: "secret_token",
       },
-      body: JSON.stringify({
-        ...(sideOne !== undefined && { front: sideOne }),
-        ...(sideTwo !== undefined && { back: sideTwo }),
-      }),
+      body: JSON.stringify(data),
     }
   );
   if (!response.ok) {
