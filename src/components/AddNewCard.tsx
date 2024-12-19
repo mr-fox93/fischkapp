@@ -12,6 +12,8 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onVoid }) => {
   const [input1, setInput1] = useState<string>("");
   const [input2, setInput2] = useState<string>("");
   const { addFlashcard, flashcards } = useFlashcardContext();
+  const [visibleSideOne, setVisibleSideOne] = useState(true);
+  const [visibleSideTwo, setVisibleSideTwo] = useState(false);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,13 +23,60 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onVoid }) => {
     console.log("po dodaniu", flashcards);
   };
 
+  const handleVisible = () => {
+    setVisibleSideOne(false);
+    setVisibleSideTwo(true);
+  };
+
+  const handleBackButton = () => {
+    setVisibleSideOne(true);
+    setVisibleSideTwo(false);
+  };
+
   return (
     <>
-      <form onSubmit={handleSave}>
+      <form onSubmit={handleSave} className={styles.cardForm}>
         <div className={styles.card}>
-          <input type="text" onChange={(e) => setInput1(e.target.value)} />
-          <input type="text" onChange={(e) => setInput2(e.target.value)} />
-          <button type="submit">SAVE</button>
+          {visibleSideOne && (
+            <div className={styles.sideOne}>
+              <input
+                value={input1}
+                type="text"
+                onChange={(e) => setInput1(e.target.value)}
+                className={styles.input}
+              />
+              <div className={styles.buttonContainer}>
+                <button className={styles.cancelButton} onClick={onVoid}>
+                  Cancel
+                </button>
+                <button className={styles.nextButton} onClick={handleVisible}>
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
+          {visibleSideTwo && (
+            <div className={styles.sideTwo}>
+              <p className={styles.previewText}>{input1}</p>
+              <input
+                value={input2}
+                type="text"
+                onChange={(e) => setInput2(e.target.value)}
+                className={styles.input}
+              />
+              <div className={styles.buttonContainer}>
+                <button
+                  className={styles.backButton}
+                  onClick={handleBackButton}
+                >
+                  Back
+                </button>
+                <button className={styles.saveButton} type="submit">
+                  SAVE
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </form>
     </>

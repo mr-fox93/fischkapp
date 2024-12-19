@@ -10,9 +10,9 @@ export interface FlashCardState {
   currentSide: FlashCardSide;
 }
 
-export interface EditedFlashCard {
-  _id: string;
-  front: string;
-  back: string;
-  key: string;
-}
+// export interface EditedFlashCard {
+//   _id: string;
+//   front: string;
+//   back: string;
+//   key: string;
+// }
