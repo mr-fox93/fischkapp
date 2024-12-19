@@ -1,78 +1,57 @@
-// import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, { createContext, useState, useContext, ReactNode } from "react";
+import { FlashCard } from "../types";
+import { getAllFlashCards } from "../services/flashcardService";
 
-// interface Flashcard {
-//     id: number;
-//     question: string;
-//     answer: string;
-// }
+interface FlashcardContextType {
+  flashcards: FlashCard[];
+  addFlashcard: (flashcard: FlashCard) => void;
+  removeFlashcard: (_id: string | undefined) => void;
+  getAllCards: () => void;
+  setFlashCards: React.Dispatch<React.SetStateAction<FlashCard[]>>;
+}
 
-// interface FlashcardContextType {
-//     flashcards: Flashcard[];
-//     addFlashcard: (flashcard: Flashcard) => void;
-//     removeFlashcard: (id: number) => void;
-// }
+const FlashcardContext = createContext<FlashcardContextType | undefined>(
+  undefined
+);
 
-// const FlashcardContext = createContext<FlashcardContextType | undefined>(undefined);
+export const FlashcardProvider = ({ children }: { children: ReactNode }) => {
+  const [flashcards, setFlashCards] = useState<FlashCard[]>([]);
 
-// export const FlashcardProvider = ({ children }: { children: ReactNode }) => {
-//     const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
+  const addFlashcard = (flashcard: FlashCard) => {
+    setFlashCards([...flashcards, flashcard]);
+  };
 
-//     const addFlashcard = (flashcard: Flashcard) => {
-//         setFlashcards([...flashcards, flashcard]);
-//     };
+  const removeFlashcard = (_id: string | undefined) => {
+    setFlashCards(flashcards.filter((flashcard) => flashcard._id !== _id));
+  };
 
-//     const removeFlashcard = (id: number) => {
-//         setFlashcards(flashcards.filter(flashcard => flashcard.id !== id));
-//     };
+  const getAllCards = () => {
+    getAllFlashCards().then((data) => {
+      setFlashCards(data);
+    });
+  };
 
-//     return (
-//         <FlashcardContext.Provider value={{ flashcards, addFlashcard, removeFlashcard }}>
-//             {children}
-//         </FlashcardContext.Provider>
-//     );
-// };
+  return (
+    <FlashcardContext.Provider
+      value={{
+        flashcards,
+        addFlashcard,
+        removeFlashcard,
+        getAllCards,
+        setFlashCards,
+      }}
+    >
+      {children}
+    </FlashcardContext.Provider>
+  );
+};
 
-// export const useFlashcardContext = () => {
-//     const context = useContext(FlashcardContext);
-//     if (context === undefined) {
-//         throw new Error('useFlashcardContext must be used within a FlashcardProvider');
-//     }
-//     return context;
-// };
-
-// import React, { createContext, useContext, useState, ReactNode } from "react";
-
-// type FlashCardState = "front" | "back";
-
-// interface FlashCardContextType {
-//   currentSide: FlashCardState;
-//   flipCard: () => void;
-// }
-
-// const FlashCardContext = createContext<FlashCardContextType | undefined>(
-//   undefined
-// );
-
-// export const FlashCardProvider: React.FC<{ children: ReactNode }> = ({
-//   children,
-// }) => {
-//   const [currentSide, setCurrentSide] = useState<FlashCardState>("front");
-
-//   const flipCard = () => {
-//     setCurrentSide((prevSide) => (prevSide === "front" ? "back" : "front"));
-//   };
-
-//   return (
-//     <FlashCardContext.Provider value={{ currentSide, flipCard }}>
-//       {children}
-//     </FlashCardContext.Provider>
-//   );
-// };
-
-// export const useFlashCard = (): FlashCardContextType => {
-//   const context = useContext(FlashCardContext);
-//   if (!context) {
-//     throw new Error("useFlashCard must be used within a FlashCardProvider");
-//   }
-//   return context;
-// };
+export const useFlashcardContext = () => {
+  const context = useContext(FlashcardContext);
+  if (context === undefined) {
+    throw new Error(
+      "useFlashcardContext must be used within a FlashcardProvider"
+    );
+  }
+  return context;
+};
