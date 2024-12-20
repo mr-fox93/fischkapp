@@ -9,14 +9,12 @@ import AddNewCard from "./components/AddNewCard";
 import { useFlashcardContext } from "./contexts/FlashcardContext";
 
 function App() {
-  // const [flashcards, setFlashCards] = useState<FlashCard[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const { setFlashCards, flashcards } = useFlashcardContext();
 
   useEffect(() => {
     getAllFlashCards().then((data) => {
       setFlashCards(data);
-      console.log("po pobraniu", data, "a to flashcards", flashcards);
     });
   }, []);
 

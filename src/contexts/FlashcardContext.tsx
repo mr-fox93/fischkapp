@@ -8,6 +8,9 @@ interface FlashcardContextType {
   removeFlashcard: (_id: string | undefined) => void;
   getAllCards: () => void;
   setFlashCards: React.Dispatch<React.SetStateAction<FlashCard[]>>;
+  editFlashcard: (
+    flashcard: Partial<FlashCard> & { _id: string | undefined }
+  ) => void;
 }
 
 const FlashcardContext = createContext<FlashcardContextType | undefined>(
@@ -31,6 +34,24 @@ export const FlashcardProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const editFlashcard = ({
+    _id,
+    front,
+    back,
+  }: Partial<FlashCard> & { _id: string | undefined }) => {
+    setFlashCards((prevCards) =>
+      prevCards.map((flashcard) =>
+        flashcard._id === _id
+          ? {
+              ...flashcard,
+              front: front !== undefined ? front : flashcard.front,
+              back: back !== undefined ? back : flashcard.back,
+            }
+          : flashcard
+      )
+    );
+  };
+
   return (
     <FlashcardContext.Provider
       value={{
@@ -39,6 +60,7 @@ export const FlashcardProvider = ({ children }: { children: ReactNode }) => {
         removeFlashcard,
         getAllCards,
         setFlashCards,
+        editFlashcard,
       }}
     >
       {children}
