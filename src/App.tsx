@@ -1,5 +1,5 @@
 import { AppLayout } from "./components/AppLayout";
-import "./App.module.scss";
+import styles from "./App.module.scss";
 import AppHeader from "./components/AppHeader";
 import { useEffect, useState } from "react";
 import { getAllFlashCards } from "./services/flashcardService";
@@ -25,15 +25,17 @@ function App() {
         onVisible={() => setIsVisible(true)}
       />
       {isVisible && <AddNewCard onVoid={() => setIsVisible(false)} />}
-      {flashcards &&
-        flashcards.map((card) => (
-          <Flashcard
-            key={card._id}
-            _id={card._id}
-            front={card.front}
-            back={card.back}
-          />
-        ))}
+      <div className={styles.cardsWrapper}>
+        {flashcards &&
+          flashcards.map((card) => (
+            <Flashcard
+              key={card._id}
+              _id={card._id}
+              front={card.front}
+              back={card.back}
+            />
+          ))}
+      </div>
     </AppLayout>
   );
 }

@@ -9,3 +9,12 @@
 body {
   font-family: "Lexend", sans-serif;
 }
+
+.cardsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // gap: 16px;
+  // padding: 16px;
+  margin: 0 auto;
+}

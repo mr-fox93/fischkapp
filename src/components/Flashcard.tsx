@@ -29,9 +29,13 @@ const Flashcard: React.FC<FlashCard> = ({ _id, front, back }) => {
   };
 
   return (
-    <div onClick={flipSide} className={styles.card} key={_id}>
-      {currentSide === "front" ? (
-        <div>
+    <div className={styles.cardContainer} onClick={flipSide} key={_id}>
+      <div
+        className={`${styles.card} ${
+          currentSide === "back" ? styles.isFlipped : ""
+        }`}
+      >
+        <div className={styles.cardFront}>
           {isEdit ? (
             <>
               <input
@@ -53,12 +57,19 @@ const Flashcard: React.FC<FlashCard> = ({ _id, front, back }) => {
               >
                 Edit
               </button>
-              <button onClick={() => handleDelete(_id)}>Delete</button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(_id);
+                }}
+              >
+                Delete
+              </button>
             </>
           )}
         </div>
-      ) : (
-        <div>
+
+        <div className={styles.cardBack}>
           {isEdit ? (
             <>
               <input
@@ -80,11 +91,18 @@ const Flashcard: React.FC<FlashCard> = ({ _id, front, back }) => {
               >
                 Edit
               </button>
-              <button onClick={() => handleDelete(_id)}>Delete</button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(_id);
+                }}
+              >
+                Delete
+              </button>
             </>
-          )}{" "}
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
