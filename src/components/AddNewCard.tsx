@@ -35,7 +35,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onVoid }) => {
 
   return (
     <>
-      <form onSubmit={handleSave} className={styles.cardForm}>
+      <form onSubmit={handleSave} className={styles.cardContainer}>
         <div className={styles.card}>
           {visibleSideOne && (
             <div className={styles.sideOne}>
