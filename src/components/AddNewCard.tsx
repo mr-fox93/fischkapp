@@ -14,6 +14,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onVoid }) => {
   const { addFlashcard, flashcards } = useFlashcardContext();
   const [visibleSideOne, setVisibleSideOne] = useState(true);
   const [visibleSideTwo, setVisibleSideTwo] = useState(false);
+  const [error, setError] = useState<string>("");
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,12 +45,17 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onVoid }) => {
                 type="text"
                 onChange={(e) => setInput1(e.target.value)}
                 className={styles.input}
+                data-testid="input1"
               />
               <div className={styles.buttonContainer}>
                 <button className={styles.cancelButton} onClick={onVoid}>
                   Cancel
                 </button>
-                <button className={styles.nextButton} onClick={handleVisible}>
+                <button
+                  disabled={input1.length === 0}
+                  className={styles.nextButton}
+                  onClick={handleVisible}
+                >
                   Next
                 </button>
               </div>
@@ -63,6 +69,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onVoid }) => {
                 type="text"
                 onChange={(e) => setInput2(e.target.value)}
                 className={styles.input}
+                data-testid="input2"
               />
               <div className={styles.buttonContainer}>
                 <button
@@ -71,7 +78,11 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onVoid }) => {
                 >
                   Back
                 </button>
-                <button className={styles.saveButton} type="submit">
+                <button
+                  disabled={input2.length === 0}
+                  className={styles.saveButton}
+                  type="submit"
+                >
                   SAVE
                 </button>
               </div>
