@@ -51,6 +51,7 @@ const Flashcard: React.FC<FlashCard> = ({ _id, front, back }) => {
               >
                 Save
               </button>
+              <button onClick={() => setIsEdit(false)}>Cancel</button>
             </>
           ) : (
             <>
@@ -91,6 +92,7 @@ const Flashcard: React.FC<FlashCard> = ({ _id, front, back }) => {
               >
                 Save
               </button>
+              <button onClick={() => setIsEdit(false)}>Cancel</button>
             </>
           ) : (
             <>

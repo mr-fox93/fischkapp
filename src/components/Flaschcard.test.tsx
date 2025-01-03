@@ -58,4 +58,19 @@ describe("Flashcard", () => {
     expect(input2.value).toBe("Back text");
     expect(saveBtn[0]).toBeEnabled();
   });
+
+  it("user can cancel editing flashcard", async () => {
+    const { getAllByRole } = render(
+      <Flashcard front="Front text" back="Back text" />
+    );
+    const editBtn = getAllByRole("button", { name: "Edit" });
+
+    fireEvent.click(editBtn[0]);
+    const cancelBtn = getAllByRole("button", { name: "Cancel" });
+
+    fireEvent.click(cancelBtn[0]);
+    const input1 = getAllByRole("button", { name: "Edit" });
+
+    expect(input1.length).toBeGreaterThan(0);
+  });
 });
