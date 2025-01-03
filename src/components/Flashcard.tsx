@@ -43,8 +43,14 @@ const Flashcard: React.FC<FlashCard> = ({ _id, front, back }) => {
                 type="text"
                 onChange={(e) => setInput1(e.target.value)}
                 onClick={(e) => e.stopPropagation()}
+                data-testid="input1"
               />
-              <button onClick={() => handleEdit(_id)}>Save</button>
+              <button
+                disabled={input1.length === 0}
+                onClick={() => handleEdit(_id)}
+              >
+                Save
+              </button>
             </>
           ) : (
             <>
@@ -77,8 +83,14 @@ const Flashcard: React.FC<FlashCard> = ({ _id, front, back }) => {
                 type="text"
                 onChange={(e) => setInput2(e.target.value)}
                 onClick={(e) => e.stopPropagation()}
+                data-testid="input2"
               />
-              <button onClick={() => handleEdit(_id)}>Save</button>
+              <button
+                disabled={input2.length === 0}
+                onClick={() => handleEdit(_id)}
+              >
+                Save
+              </button>
             </>
           ) : (
             <>
